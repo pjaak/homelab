@@ -1,15 +1,12 @@
 terraform {
   required_version = "~> 1.7"
-
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "khuedoan"
-
-    workspaces {
-      name = "homelab-external"
-    }
+  backend "s3" {
+    bucket         = "your-terraform-state-bucket-name" # Replace with your S3 bucket name
+    key            = "path/to/your/terraform.tfstate"   # Replace with your desired key/path
+    region         = "us-east-1"                       # Replace with your AWS region
+    dynamodb_table = "your-terraform-state-lock-table" # Replace with your DynamoDB table name
+    encrypt        = true                              # Optional: Enable server-side encryption
   }
-
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
