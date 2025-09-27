@@ -1,11 +1,9 @@
 terraform {
   required_version = "~> 1.7"
   backend "s3" {
-    bucket         = "your-terraform-state-bucket-name" # Replace with your S3 bucket name
-    key            = "path/to/your/terraform.tfstate"   # Replace with your desired key/path
-    region         = "us-east-1"                       # Replace with your AWS region
-    dynamodb_table = "your-terraform-state-lock-table" # Replace with your DynamoDB table name
-    encrypt        = true                              # Optional: Enable server-side encryption
+    bucket         = "pjak-tf-state-store" # Replace with your S3 bucket name
+    key            = "homelab.tfstate"   # Replace with your desired key/path       
+    region = "ap-southeast-2"                 # Optional: Enable server-side encryption
   }
   required_providers {
     cloudflare = {
