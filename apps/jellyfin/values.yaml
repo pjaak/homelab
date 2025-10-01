@@ -1,5 +1,6 @@
 app-template:
   defaultPodOptions:
+    enableServiceLinks: true
     securityContext:
       fsGroup: 1000
   controllers:
@@ -31,10 +32,12 @@ app-template:
             tag: 1.7.0
   service:
     main:
+      controller: main
       ports:
         http:
           port: 8096
           protocol: HTTP
+          primary: true
         transmission:
           port: 9091
           protocol: HTTP
