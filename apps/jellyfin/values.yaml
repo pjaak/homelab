@@ -117,10 +117,6 @@ app-template:
           main:
             - path: /config
               subPath: jellyfin/config
-            - path: /media/movies
-              subPath: movies
-            - path: /media/shows
-              subPath: shows
           transmission:
             - path: /config
               subPath: transmission/config
@@ -134,15 +130,20 @@ app-template:
               subPath: radarr/config
             - path: /downloads/complete
               subPath: transmission/downloads/complete
-            - path: /movies
-              subPath: movies
           sonarr:
             - path: /config
               subPath: sonarr/config
             - path: /downloads/complete
               subPath: transmission/downloads/complete
-            - path: /shows
-              subPath: shows
           jellyseerr:
             - path: /app/config
               subPath: jellyseerr/config
+    media:
+      enabled: true
+      type: persistentVolumeClaim
+      existingClaim: media-pvc-nfs
+      advancedMounts:
+        main:
+          main:
+            - path: /media
+              readOnly: false
