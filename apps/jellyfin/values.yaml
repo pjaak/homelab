@@ -154,13 +154,6 @@ app-template:
               service:
                 identifier: main
                 port: sonarr
-        - host: &jellyseerrHost jellyseer.pjak.me
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                identifier: main
-                port: jellyseerr
         - host: &sabnzbdHost sabnzbd.pjak.me
           paths:
             - path: /
@@ -176,7 +169,6 @@ app-template:
             - *prowlarrHost
             - *radarrHost
             - *sonarrHost
-            - *jellyseerrHost
             - *sabnzbdHost
   persistence:
     data:
