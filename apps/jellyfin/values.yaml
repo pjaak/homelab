@@ -21,8 +21,6 @@ app-template:
                 failureThreshold: 30
                 periodSeconds: 5
           resources:
-            limits:
-              memory: 1200Mi
             requests:
               cpu: 64m
               memory: 897Mi
@@ -31,8 +29,6 @@ app-template:
             repository: lscr.io/linuxserver/transmission
             tag: 4.0.6
           resources:
-            limits:
-              memory: 177Mi
             requests:
               cpu: 2m
               memory: 10Mi
@@ -41,8 +37,6 @@ app-template:
             repository: lscr.io/linuxserver/prowlarr
             tag: 2.0.5
           resources:
-            limits:
-              memory: 186Mi
             requests:
               cpu: 2m
               memory: 101Mi
@@ -54,15 +48,11 @@ app-template:
             requests:
               cpu: 2m
               memory: 104Mi
-            limits:
-              memory: 200Mi
         sonarr:
           image:
             repository: lscr.io/linuxserver/sonarr
             tag: 4.0.15
           resources:
-            limits:
-              memory: 254Mi
             requests:
               cpu: 2m
               memory: 187Mi
@@ -71,8 +61,6 @@ app-template:
             repository: docker.io/fallenbagel/jellyseerr
             tag: 2.7.3
           resources:
-            limits:
-              memory: 319Mi
             requests:
               memory: 208Mi
               cpu: 1m
@@ -81,8 +69,6 @@ app-template:
             repository: lscr.io/linuxserver/sabnzbd
             tag: latest
           resources:
-            limits:
-              memory: 186Mi
             requests:
               cpu: 2m
               memory: 101Mi
