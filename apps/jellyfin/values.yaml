@@ -154,7 +154,7 @@ app-template:
               service:
                 identifier: main
                 port: sonarr
-        - host: &jellyseerrHost jellyseerr.pjak.me
+        - host: &jellyseerrHost jellyseer.pjak.me
           paths:
             - path: /
               pathType: Prefix
