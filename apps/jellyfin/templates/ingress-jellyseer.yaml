@@ -7,6 +7,7 @@ metadata:
     external-dns.alpha.kubernetes.io/target: "homelab-tunnel.example.com"
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
     cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
   defaultBackend:
     service:
       name: jellyfin
