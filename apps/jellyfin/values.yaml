@@ -24,9 +24,9 @@ app-template:
             requests:
               cpu: 64m
               memory: 897Mi
-        qbitorrent:
+        qbittorrent:
           image:
-            repository: lscr.io/linuxserver/qbitorrent
+            repository: lscr.io/linuxserver/qbittorrent
             tag: 5.1.2
           resources:
             requests:
@@ -80,7 +80,7 @@ app-template:
           port: 8096
           protocol: HTTP
           primary: true
-        qbitorrent:
+        qbittorrent:
           port: 8085
           protocol: HTTP
         prowlarr:
@@ -112,13 +112,13 @@ app-template:
               service:
                 identifier: main
                 port: http
-        - host: &qbitorrentHost qbitorrent.pjak.me
+        - host: &qbittorrentHost qbittorrent.pjak.me
           paths:
             - path: /
               pathType: Prefix
               service:
                 identifier: main
-                port: qbitorrent
+                port: qbittorrent
         - host: &prowlarrHost prowlarr.pjak.me
           paths:
             - path: /
@@ -151,7 +151,7 @@ app-template:
         - secretName: jellyfin-tls-certificate
           hosts:
             - *jellyfinHost
-            - *qbitorrentHost
+            - *qbittorrentHost
             - *prowlarrHost
             - *radarrHost
             - *sonarrHost
@@ -165,11 +165,11 @@ app-template:
           main:
             - path: /config
               subPath: jellyfin/config
-          qbitorrent:
+          qbittorrent:
             - path: /config
-              subPath: qbitorrent/config
+              subPath: qbittorrent/config
             - path: /downloads
-              subPath: qbitorrent/downloads
+              subPath: qbittorrent/downloads
           prowlarr:
             - path: /config
               subPath: prowlarr/config
@@ -177,12 +177,12 @@ app-template:
             - path: /config
               subPath: radarr/config
             - path: /downloads/complete
-              subPath: qbitorrent/downloads/complete
+              subPath: qbittorrent/downloads/complete
           sonarr:
             - path: /config
               subPath: sonarr/config
             - path: /downloads/complete
-              subPath: qbitorrent/downloads/complete
+              subPath: qbittorrent/downloads/complete
           jellyseerr:
             - path: /app/config
               subPath: jellyseerr/config
@@ -198,7 +198,7 @@ app-template:
           main:
             - path: /data
               readOnly: false
-          qbitorrent:
+          qbittorrent:
             - path: /data
               readOnly: false
           radarr:
