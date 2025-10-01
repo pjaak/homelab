@@ -169,7 +169,7 @@ app-template:
             - path: /config
               subPath: jellyfin/config
           qbittorrent:
-            - path: /config/qBittorrent
+            - path: /config
               subPath: qbittorrent/config
             - path: /downloads
               subPath: qbittorrent/downloads
