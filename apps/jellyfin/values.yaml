@@ -118,35 +118,35 @@ app-template:
             - path: /
               pathType: Prefix
               service:
-                identifier: main
+                identifier: transmission
                 port: http
         - host: &prowlarrHost prowlarr.pjak.me
           paths:
             - path: /
               pathType: Prefix
               service:
-                identifier: main
+                identifier: prowlarr
                 port: http
         - host: &radarrHost radarr.pjak.me
           paths:
             - path: /
               pathType: Prefix
               service:
-                identifier: main
+                identifier: radarr
                 port: http
         - host: &sonarrHost sonarr.pjak.me
           paths:
             - path: /
               pathType: Prefix
               service:
-                identifier: main
+                identifier: sonarr
                 port: http
         - host: &jellyseerrHost jellyseerr.pjak.me
           paths:
             - path: /
               pathType: Prefix
               service:
-                identifier: main
+                identifier: jellyseerr
                 port: http
       tls:
         - secretName: jellyfin-tls-certificate
