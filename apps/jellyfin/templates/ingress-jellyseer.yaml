@@ -8,13 +8,19 @@ metadata:
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
-  defaultBackend:
-    service:
-      name: jellyfin
-      port:
-        name: jellyseerr
   ingressClassName: nginx
   tls:
     - secretName: jellyseer-tls-certificate
       hosts:
         - jellyseer.pjak.me
+  rules:
+    - host: jellyseer.pjak.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jellyfin
+                port:
+                  name: jellyseerr
