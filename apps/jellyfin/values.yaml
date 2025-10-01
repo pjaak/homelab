@@ -226,6 +226,12 @@ app-template:
           radarr:
             - path: /media
               readOnly: false
+          prowlarr:
+            - path: /media
+              readOnly: false
+          jellyseerr:
+            - path: /media
+              readOnly: false
           sonarr:
             - path: /media
               readOnly: false
