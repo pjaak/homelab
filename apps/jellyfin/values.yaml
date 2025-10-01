@@ -76,6 +76,16 @@ app-template:
             requests:
               memory: 208Mi
               cpu: 1m
+        sabnzbd:
+          image:
+            repository: lscr.io/linuxserver/sabnzbd
+            tag: latest
+          resources:
+            limits:
+              memory: 186Mi
+            requests:
+              cpu: 2m
+              memory: 101Mi
   service:
     main:
       controller: main
@@ -98,6 +108,9 @@ app-template:
           protocol: HTTP
         jellyseerr:
           port: 5055
+          protocol: HTTP
+        sabnzbd:
+          port: 8080
           protocol: HTTP
   ingress:
     main:
@@ -148,6 +161,13 @@ app-template:
               service:
                 identifier: main
                 port: jellyseerr
+        - host: &sabnzbdHost sabnzbd.pjak.me
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                identifier: main
+                port: sabnzbd
       tls:
         - secretName: jellyfin-tls-certificate
           hosts:
@@ -157,6 +177,7 @@ app-template:
             - *radarrHost
             - *sonarrHost
             - *jellyseerrHost
+            - *sabnzbdHost
   persistence:
     data:
       accessMode: ReadWriteOnce
@@ -187,6 +208,9 @@ app-template:
           jellyseerr:
             - path: /app/config
               subPath: jellyseerr/config
+          sabnzbd:
+            - path: /config
+              subPath: sabnzbd/config
     media:
       enabled: true
       type: persistentVolumeClaim
@@ -203,5 +227,8 @@ app-template:
             - path: /media
               readOnly: false
           sonarr:
+            - path: /media
+              readOnly: false
+          sabnzbd:
             - path: /media
               readOnly: false
