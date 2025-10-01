@@ -218,23 +218,23 @@ app-template:
       advancedMounts:
         main:
           main:
-            - path: /media
+            - path: /data
               readOnly: false
           transmission:
-            - path: /media
+            - path: /data
               readOnly: false
           radarr:
-            - path: /media
+            - path: /data
               readOnly: false
           prowlarr:
-            - path: /media
+            - path: /data
               readOnly: false
           jellyseerr:
-            - path: /media
+            - path: /data
               readOnly: false
           sonarr:
-            - path: /media
+            - path: /data
               readOnly: false
           sabnzbd:
-            - path: /media
+            - path: /data
               readOnly: false
