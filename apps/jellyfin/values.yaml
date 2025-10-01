@@ -32,6 +32,9 @@ app-template:
             requests:
               cpu: 2m
               memory: 10Mi
+          env:
+            - name: WEBUI_PORT
+              value: "8085"
         prowlarr:
           image:
             repository: lscr.io/linuxserver/prowlarr
