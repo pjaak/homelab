@@ -168,6 +168,8 @@ app-template:
           main:
             - path: /config
               subPath: jellyfin/config
+            - path: /cache
+              subPath: jellyfin/cache
           qbittorrent:
             - path: /config
               subPath: qbittorrent/config
@@ -199,7 +201,7 @@ app-template:
       advancedMounts:
         main:
           main:
-            - path: /data
+            - path: /mnt/data
               readOnly: false
           qbittorrent:
             - path: /data
