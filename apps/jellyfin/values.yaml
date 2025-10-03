@@ -108,13 +108,6 @@ app-template:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
       hosts:
-        - host: &jellyfinHost jellyfin.pjak.me
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                identifier: main
-                port: http
         - host: &qbittorrentHost qbittorrent.pjak.me
           paths:
             - path: /
@@ -153,7 +146,6 @@ app-template:
       tls:
         - secretName: jellyfin-tls-certificate
           hosts:
-            - *jellyfinHost
             - *qbittorrentHost
             - *prowlarrHost
             - *radarrHost
