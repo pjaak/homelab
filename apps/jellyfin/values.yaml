@@ -24,17 +24,10 @@ app-template:
             requests:
               cpu: 64m
               memory: 897Mi
-        qbittorrent:
+        transmission:
           image:
-            repository: lscr.io/linuxserver/qbittorrent
-            tag: 5.1.2
-          resources:
-            requests:
-              cpu: 2m
-              memory: 10Mi
-          env:
-            - name: WEBUI_PORT
-              value: "8085"
+            repository: lscr.io/linuxserver/transmission
+            tag: 4.0.6
         prowlarr:
           image:
             repository: lscr.io/linuxserver/prowlarr
@@ -83,8 +76,8 @@ app-template:
           port: 8096
           protocol: HTTP
           primary: true
-        qbittorrent:
-          port: 8085
+        transmission:
+          port: 9091
           protocol: HTTP
         prowlarr:
           port: 9696
@@ -108,13 +101,13 @@ app-template:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
       hosts:
-        - host: &qbittorrentHost qbittorrent.pjak.me
+        - host: &transmissionHost transmission.pjak.me
           paths:
             - path: /
               pathType: Prefix
               service:
                 identifier: main
-                port: qbittorrent
+                port: transmission
         - host: &prowlarrHost prowlarr.pjak.me
           paths:
             - path: /
@@ -146,7 +139,7 @@ app-template:
       tls:
         - secretName: jellyfin-tls-certificate
           hosts:
-            - *qbittorrentHost
+            - *transmissionHost
             - *prowlarrHost
             - *radarrHost
             - *sonarrHost
@@ -162,11 +155,9 @@ app-template:
               subPath: jellyfin/config
             - path: /cache
               subPath: jellyfin/cache
-          qbittorrent:
+          transmission:
             - path: /config
-              subPath: qbittorrent/config
-            - path: /downloads
-              subPath: qbittorrent/downloads
+              subPath: transmission/config
           prowlarr:
             - path: /config
               subPath: prowlarr/config
@@ -195,7 +186,7 @@ app-template:
           main:
             - path: /mnt/data
               readOnly: false
-          qbittorrent:
+          transmission:
             - path: /data
               readOnly: false
           radarr:
