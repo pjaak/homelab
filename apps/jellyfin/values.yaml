@@ -28,6 +28,9 @@ app-template:
           image:
             repository: lscr.io/linuxserver/transmission
             tag: 4.0.6
+          env:
+            PUID: "1000"
+            GUID: "1000"
         prowlarr:
           image:
             repository: lscr.io/linuxserver/prowlarr
@@ -36,6 +39,9 @@ app-template:
             requests:
               cpu: 2m
               memory: 101Mi
+          env:
+            PUID: "1000"
+            GUID: "1000"
         radarr:
           image:
             repository: lscr.io/linuxserver/radarr
@@ -44,6 +50,9 @@ app-template:
             requests:
               cpu: 2m
               memory: 104Mi
+          env:
+            PUID: "1000"
+            GUID: "1000"
         sonarr:
           image:
             repository: lscr.io/linuxserver/sonarr
@@ -52,6 +61,9 @@ app-template:
             requests:
               cpu: 2m
               memory: 187Mi
+          env:
+            PUID: "1000"
+            GUID: "1000"
         jellyseerr:
           image:
             repository: docker.io/fallenbagel/jellyseerr
@@ -68,6 +80,9 @@ app-template:
             requests:
               cpu: 2m
               memory: 101Mi
+          env:
+            PUID: "1000"
+            GUID: "1000"
   service:
     main:
       controller: main
