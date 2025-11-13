@@ -3,7 +3,6 @@ app-template:
     enableServiceLinks: true
     securityContext:
       fsGroup: 1000
-      privileged: true
   controllers:
     main:
       containers:
@@ -11,6 +10,8 @@ app-template:
           image:
             repository: lscr.io/linuxserver/jellyfin
             tag: 10.10.7
+          securityContext:
+            privileged: true
           probes:
             liveness:
               enabled: true
