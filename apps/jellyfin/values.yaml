@@ -3,6 +3,7 @@ app-template:
     enableServiceLinks: true
     securityContext:
       fsGroup: 1000
+      privileged: true
   controllers:
     main:
       containers:
@@ -160,6 +161,10 @@ app-template:
             - *sonarrHost
             - *sabnzbdHost
   persistence:
+    gpu:
+      enabled: true
+      type: hostPath
+      hostPath: /dev/dri
     data:
       accessMode: ReadWriteOnce
       size: 50Gi
