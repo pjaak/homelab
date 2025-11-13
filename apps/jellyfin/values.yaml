@@ -165,6 +165,10 @@ app-template:
       enabled: true
       type: hostPath
       hostPath: /dev/dri
+      advancedMounts:
+        main:
+          main:
+            - path: /dev/dri
     data:
       accessMode: ReadWriteOnce
       size: 50Gi
