@@ -1,6 +1,9 @@
 app-template:
   serviceAccount:
-    name: tailscale
+    tailscale:
+      enabled: true
+      annotations: {}
+      labels: {}
   controllers:
     tailscale:
       containers:
