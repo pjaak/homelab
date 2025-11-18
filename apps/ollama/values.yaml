@@ -39,15 +39,15 @@ app-template:
             - path: /
               pathType: Prefix
               service:
-                name: main
-                port: 11434
+                identifier: main
+                port: http
         - host: &uiHost ai.pjak.me
           paths:
             - path: /
               pathType: Prefix
               service:
-                name: ui
-                port: 8080
+                identifier: ui
+                port: http
       tls:
         - hosts:
             - *ollamaHost
