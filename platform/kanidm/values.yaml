@@ -54,8 +54,8 @@ app-template:
             - path: /
               pathType: Prefix
               service:
-                name: main
-                port: 443
+                identifier: main
+                port: https
       tls:
         - hosts:
             - *host
