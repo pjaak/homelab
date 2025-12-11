@@ -29,6 +29,7 @@ app-template:
           origin = "https://auth.pjak.me"
   service:
     main:
+      controller: main
       ports:
         http:
           enabled: false
