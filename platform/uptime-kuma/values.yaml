@@ -58,6 +58,8 @@ uptime-kuma:
       nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
       nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
       cert-manager.io/cluster-issuer: letsencrypt-prod
+      external-dns.alpha.kubernetes.io/target: "homelab-tunnel.pjak.me"
+      external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
       nginx.ingress.kubernetes.io/server-snippets: |
         location / {
           proxy_set_header Upgrade $http_upgrade;
