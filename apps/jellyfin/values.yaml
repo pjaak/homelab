@@ -117,7 +117,7 @@ app-template:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
-        nginx.ingress.kubernetes.io/proxy-body-size: 0
+        nginx.ingress.kubernetes.io/proxy-body-size: "0"
       hosts:
         - host: &transmissionHost transmission.pjak.me
           paths:
