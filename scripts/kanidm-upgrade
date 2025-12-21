@@ -1,0 +1,58 @@
+#!/bin/sh
+
+set -eu
+
+# Script to incrementally upgrade Kanidm through required versions
+# Usage: ./scripts/kanidm-upgrade
+
+NAMESPACE="${NAMESPACE:-kanidm}"
+STATEFULSET="${STATEFULSET:-kanidm}"
+
+# Versions to upgrade through (must be sequential)
+VERSIONS="1.4.0 1.5.0 1.6.0 1.7.0 1.8.0 1.8.5"
+
+echo "⚠️  WARNING: This script will upgrade Kanidm incrementally through versions:"
+echo "   ${VERSIONS}"
+echo ""
+echo "📋 Prerequisites:"
+echo "   1. Ensure you have a backup of your Kanidm data"
+echo "   2. Update platform/kanidm/values.yaml with each version"
+echo "   3. Apply the changes and wait for the pod to be ready"
+echo ""
+read -p "Continue? (yes/no): " confirm
+if [ "${confirm}" != "yes" ]; then
+    echo "Aborted."
+    exit 1
+fi
+
+echo ""
+echo "🔍 Checking current Kanidm version..."
+CURRENT_VERSION=$(kubectl get statefulset "${STATEFULSET}" -n "${NAMESPACE}" -o jsonpath='{.spec.template.spec.containers[0].image}' | grep -oP ':\K[0-9.]+' || echo "unknown")
+echo "   Current version: ${CURRENT_VERSION}"
+echo ""
+
+echo "📝 To upgrade Kanidm, follow these steps for EACH version:"
+echo ""
+echo "   1. Edit platform/kanidm/values.yaml:"
+echo "      Change the image tag to the next version"
+echo ""
+echo "   2. Apply the changes:"
+echo "      helm upgrade kanidm ./platform/kanidm"
+echo ""
+echo "   3. Wait for the pod to be ready:"
+echo "      kubectl wait --for=condition=ready pod/${STATEFULSET}-0 -n ${NAMESPACE} --timeout=300s"
+echo ""
+echo "   4. Check the logs to ensure upgrade succeeded:"
+echo "      kubectl logs ${STATEFULSET}-0 -n ${NAMESPACE} | tail -20"
+echo ""
+echo "   5. Verify no errors in logs, then proceed to next version"
+echo ""
+echo "📋 Required upgrade sequence:"
+for version in ${VERSIONS}; do
+    echo "   → ${version}"
+done
+echo ""
+echo "💡 Tip: After each upgrade, verify the database version increased:"
+echo "   kubectl logs ${STATEFULSET}-0 -n ${NAMESPACE} | grep 'domain_previous_version'"
+echo ""
+
