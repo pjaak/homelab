@@ -11,7 +11,7 @@ app-template:
             # Required upgrade path: 1.3 → 1.4.0 → 1.5.0 → 1.6.0 → 1.7.0 → 1.8.0 → 1.8.5
             # After each upgrade, wait for pod to be ready and verify logs show successful upgrade
             # Use: ./scripts/kanidm-upgrade for guidance
-            tag: 1.8.0  # TODO: Upgrade incrementally through 1.5.0, 1.6.0, 1.7.0, 1.8.0, then 1.8.5
+            tag: 1.8.5  # TODO: Upgrade incrementally through 1.5.0, 1.6.0, 1.7.0, 1.8.0, then 1.8.5
       statefulset:
         volumeClaimTemplates:
           - name: data
