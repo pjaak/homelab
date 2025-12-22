@@ -6,6 +6,10 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   secretName: kanidm-selfsigned-certificate
+  privateKey:
+    algorithm: RSA
+    encoding: PKCS8
+    size: 4096
   issuerRef:
     kind: Issuer
     name: kanidm-selfsigned
