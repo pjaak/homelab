@@ -8,6 +8,7 @@ app-template:
             tag: v1.8.0
   service:
     main:
+      controller: main
       ports:
         http:
           port: 3000
