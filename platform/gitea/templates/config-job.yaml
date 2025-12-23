@@ -10,9 +10,21 @@ spec:
   template:
     spec:
       restartPolicy: Never
+      initContainers:
+        - name: copy-source
+          image: busybox:1.36
+          command: ["/bin/sh", "-c"]
+          args:
+            - cp -r /src/. /workdir
+          volumeMounts:
+            - name: source
+              mountPath: /src
+              readOnly: true
+            - name: workdir
+              mountPath: /workdir
       containers:
         - name: apply
-          image: golang:1.19-alpine
+          image: golang:1.25-alpine
           env:
             - name: GITEA_HOST
               value: http://gitea-http:3000
@@ -26,18 +38,23 @@ spec:
                 secretKeyRef:
                   name: gitea-admin-secret
                   key: password
-          workingDir: /go/src/gitea-config
+          workingDir: /workdir
           command:
             - sh
             - -c
           args:
             - |
-              go get .
+              go mod tidy
               go run .
           volumeMounts:
             - name: source
-              mountPath: /go/src/gitea-config
+              mountPath: /src
+              readOnly: true
+            - name: workdir
+              mountPath: /workdir
       volumes:
         - name: source
           configMap:
             name: gitea-config-source
+        - name: workdir
+          emptyDir: {}
