@@ -6,6 +6,8 @@ app-template:
           image:
             repository: ghcr.io/gethomepage/homepage
             tag: v1.8.0
+          env:
+            HOMEPAGE_ALLOWED_HOSTS: "home.pjak.me"
   service:
     main:
       controller: main
