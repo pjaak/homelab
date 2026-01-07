@@ -1,6 +1,10 @@
 home-assistant:
   replicaCount: 1
 
+  configuration:
+    # Enable or disable the configuration setup for Home Assistant
+    enabled: true
+
   # Ingress settings
   ingress:
     enabled: true
