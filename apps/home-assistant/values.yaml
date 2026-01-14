@@ -4,6 +4,7 @@ home-assistant:
   configuration:
     # Enable or disable the configuration setup for Home Assistant
     enabled: true
+    forceInit: true
 
   # Ingress settings
   ingress:
