@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: tensorchord/vchord-postgres:pg18-v1.0.0
+          image: tensorchord/vchord-postgres:pg18-v0.5.3
           imagePullPolicy: IfNotPresent
           env:
             - name: POSTGRES_DB
