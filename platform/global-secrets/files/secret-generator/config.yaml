@@ -39,7 +39,7 @@
       special: true
 
 # Immich
-- name: immich.db_password
+- name: immich.dbpassword
   data:
     - key: IMMICH_DB_PASSWORD
       length: 32
