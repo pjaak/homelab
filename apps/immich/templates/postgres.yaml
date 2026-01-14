@@ -47,13 +47,13 @@ spec:
                   name: {{ .Release.Name }}-postgres
                   key: password
             - name: PGDATA
-              value: /var/lib/postgresql/data/pgdata
+              value: /var/lib/postgresql/data
           ports:
             - containerPort: 5432
               name: postgres
           volumeMounts:
             - name: data
-              mountPath: /var/lib/postgresql/data
+              mountPath: /var/lib/postgresql
   volumeClaimTemplates:
     - metadata:
         name: data
