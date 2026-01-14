@@ -37,3 +37,10 @@
     - key: PAPERLESS_ADMIN_PASSWORD
       length: 32
       special: true
+
+# Immich
+- name: immich.db_password
+  data:
+    - key: IMMICH_DB_PASSWORD
+      length: 32
+      special: true
