@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   annotations:
     pv.kubernetes.io/provisioned-by: nfs.csi.k8s.io
-  name: media-pv-nfs
+  name: library-pv-nfs
   namespace: immich
 spec:
   capacity:
@@ -19,4 +19,4 @@ spec:
     volumeHandle: 192.168.3.21#media
     volumeAttributes:
       server: 192.168.3.21
-      share: /mnt/main/homelab/media
+      share: /mnt/main/homelab/media/library
