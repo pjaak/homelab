@@ -11,7 +11,11 @@ immich:
             DB_HOSTNAME: '{{ printf "%s-postgres" .Release.Name }}'
             DB_URL: '{{ printf "%s-postgres" .Release.Name }}'
             DB_USERNAME: 'immich'
-            DB_PASSWORD: 'changeme-immich' # CHANGE THIS to match the postgres secret if you modify it
+            DB_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: '{{ printf "%s-postgres" .Release.Name }}'
+                  key: password
             DB_DATABASE_NAME: 'immich'
             DB_PORT: "5432"
 
