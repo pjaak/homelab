@@ -8,8 +8,8 @@ immich:
           env:
             REDIS_HOSTNAME: '{{ printf "%s-valkey" .Release.Name }}'
             IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
+            IMMICH_BASE_URL: 'https://immich.pjak.me'
             DB_HOSTNAME: '{{ printf "%s-postgres" .Release.Name }}'
-            DB_URL: '{{ printf "%s-postgres" .Release.Name }}'
             DB_USERNAME: 'immich'
             DB_PASSWORD:
               valueFrom:
