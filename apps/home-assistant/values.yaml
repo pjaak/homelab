@@ -111,4 +111,4 @@ home-assistant:
   deploymentAnnotations: {}
 
   # Deployment strategy type (RollingUpdate, Recreate)
-  deploymentStrategy: RollingUpdate
+  deploymentStrategy: Recreate
