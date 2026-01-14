@@ -8,22 +8,39 @@ spec:
   template:
     spec:
       restartPolicy: Never
+      initContainers:
+        - name: copy-source
+          image: busybox:1.36
+          command: ["/bin/sh", "-c"]
+          args:
+            - cp -r /src/. /workdir
+          volumeMounts:
+            - name: source
+              mountPath: /src
+              readOnly: true
+            - name: workdir
+              mountPath: /workdir
       containers:
         - name: secret-generator
           image: golang:1.25-alpine
-          workingDir: /go/src/secret-generator
+          workingDir: /workdir
           command:
             - sh
             - -c
           args:
             - |
-              go get .
+              go mod tidy
               go run .
           volumeMounts:
             - name: source
-              mountPath: /go/src/secret-generator
+              mountPath: /src
+              readOnly: true
+            - name: workdir
+              mountPath: /workdir
       serviceAccount: secret-generator
       volumes:
         - name: source
           configMap:
             name: secret-generator
+        - name: workdir
+          emptyDir: {}
