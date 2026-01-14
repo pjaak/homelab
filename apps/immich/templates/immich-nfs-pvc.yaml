@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: library-pvc-nfs
+  name: immich-pvc-nfs
   namespace: immich
 spec:
   accessModes:
@@ -9,5 +9,5 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  volumeName: library-pv-nfs
+  volumeName: immich-pv-nfs
   storageClassName: nfs-csi
