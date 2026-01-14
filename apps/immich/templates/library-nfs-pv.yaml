@@ -16,7 +16,7 @@ spec:
     - nfsvers=4.1
   csi:
     driver: nfs.csi.k8s.io
-    volumeHandle: 192.168.3.21#media
+    volumeHandle: 192.168.3.21#library
     volumeAttributes:
       server: 192.168.3.21
-      share: /mnt/main/homelab/media
+      share: /mnt/main/homelab/media/library
