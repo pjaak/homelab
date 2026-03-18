@@ -1,0 +1,43 @@
+velero:
+  initContainers:
+    - name: velero-plugin-for-aws
+      image: velero/velero-plugin-for-aws:v1.13.1
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - mountPath: /target
+          name: plugins
+
+  credentials:
+    useSecret: true
+    # Created manually - see docs/how-to-guides/backup-and-restore.md
+    name: velero
+    key: cloud
+
+  configuration:
+    backupStorageLocation:
+      - name: default
+        provider: aws
+        bucket: pjak-velero-backups
+        config:
+          region: ap-southeast-2
+    uploaderType: kopia
+
+  # Deploy the node agent DaemonSet required for file system PVC backups
+  deployNodeAgent: true
+
+  schedules:
+    daily:
+      disabled: false
+      schedule: "0 2 * * *"
+      useOwnerReferencesInBackup: false
+      template:
+        ttl: "720h"  # retain 30 days of backups
+        excludedNamespaces:
+          - kube-system
+          - kube-public
+          - kube-node-lease
+          - velero-system
+        # PVC data is opt-in per app via pod annotation:
+        # backup.velero.io/backup-volumes: <volume-name>
+        defaultVolumesToFsBackup: false
+        storageLocation: default
