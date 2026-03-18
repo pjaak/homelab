@@ -176,7 +176,7 @@ app-template:
             - path: /dev/dri
     data:
       accessMode: ReadWriteOnce
-      size: 50Gi
+      size: 100Gi
       advancedMounts:
         main:
           main:
