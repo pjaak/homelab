@@ -5,6 +5,9 @@ app-template:
       fsGroup: 1000
   controllers:
     main:
+      pod:
+        annotations:
+          backup.velero.io/backup-volumes: data
       containers:
         main:
           image:
